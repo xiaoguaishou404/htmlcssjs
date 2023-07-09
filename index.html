@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">box</div>
+    <script>
+        box.addEventListener('click', function () {
+            box.style.transform = 'translateX(200px)'
+            console.log(getComputedStyle(box));
+            function a() {
+                let b = `translateX(${parseInt(getComputedStyle(box).transform.split(',')[4].trim()) + 1}px)`
+                console.log(b);
+                box.style.transform = b
+                requestAnimationFrame(a)
+            }
+            requestAnimationFrame(a)
+
+            function s() {
+                setTimeout(() => {
+                    console.log(555);
+                    s()
+                })
+            }
+            s()
+        })
+
+
+
+        // box.addEventListener('click', function () {
+        //         Promise.resolve().then(function () {
+        //             console.log(11);
+        //         })
+        //         console.log(22);
+        //     })
+        //     box.addEventListener('click', function () {
+        //         Promise.resolve().then(function () {
+        //             console.log(33);
+        //         })
+        //         console.log(44);
+        //     })
+        //     box.click()
+    </script>
+    <style>
+        #box {
+            transform: translateX(10px);
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+
+</body>
+
+</html>
